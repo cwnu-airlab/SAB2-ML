@@ -1,0 +1,58 @@
+# @package _global_
+
+name: ${datamodule.name}-${model.name}-${agent.name}-${agent.sampling_warmup}
+version: 1
+
+datamodule:
+    name: 'multi_label'
+    _target_: src.datamodule.${datamodule.name}.DataModule
+
+    ## dataloader parameter
+    batch_size: 512
+    shuffle: False
+    num_workers: 4
+
+    ## data
+    data_dir: 'data/GoEmotions/'
+    train_data: 'training.jsonl' ## or 'data/klueTC_10shot/training.jsonl'
+    valid_data: 'valid.jsonl'
+    test_data: 'test.jsonl'
+    label_file: 'label_list.txt'
+
+    ## length limit
+    check_length: False
+    max_source_length: 32
+    max_target_length: 0
+
+model:
+    name: 'bert_multi_label'
+    _target_: src.models.${model.name}.Model
+    path: 'bert-base-uncased'
+    num_labels:  28
+    cls_path : None
+    prefix_length : None
+    
+
+tokenizer:
+    name: 'bert'
+    _target_: src.tokenizer.${tokenizer.name}.Tokenizer 
+    path: 'bert-base-uncased'
+    side: 'right'
+
+optimizer:
+    _target_: torch.optim.Adam
+    lr: 1e-5
+
+agent:
+    name: 'sab2_multi'
+    _target_: src.agent.${agent.name}.Agent
+
+    epochs: 100
+    patience: 5
+    after_patience : 3
+    sampling_warmup: 20
+    norm : False
+
+    model_all_save: false
+    predict_after_all_training: false       # evaluate on test set, using best model
+    predict_after_training: true       # evaluate on test set, using best model
