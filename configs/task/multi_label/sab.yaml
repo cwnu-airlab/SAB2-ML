@@ -44,7 +44,7 @@ optimizer:
     lr: 1e-5
 
 agent:
-    name: 'sab2_multi'
+    name: 'sab2_ml'
     _target_: src.agent.${agent.name}.Agent
 
     epochs: 100

@@ -302,9 +302,6 @@ class Agent():
                     #break ## STOP training
         ## predict best model
         if self.config.agent.predict_after_training or self.config.agent.predict_after_all_training:
-            path = os.path.join( self.config.checkpoint_path, "trained_model" )
-            self.model = copy.deepcopy(self.best_model)
-            self.predict(dir_path=path)
             path = os.path.join(self.config.checkpoint_path, 'trained_model_after_training')
             self.model = copy.deepcopy(self.after_model)
             self.predict(dir_path=path)
