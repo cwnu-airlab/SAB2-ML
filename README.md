@@ -36,7 +36,7 @@ Experiment settings (global defaults in config.yaml); task-specific overrides in
 
 - requirements_hydra.txt: core + Hydra-based config stack
 
-- requirements_traP1+r436F=323536\P1+r6B75=1B4F41\nsformers.txt: Transformers-based stack
+- requirements_transformers.txt: Transformers-based stack
 
 #### run.py
 Entry point to launch experiments.
@@ -66,7 +66,7 @@ Create a Virtual Environment
 
 ```
 # using virtualenv (as requested)
-virtualenv venv --python=pythP1+r6B64=1B4F42\P1+r6B72=1B4F43\P1+r6B6C=1B4F44\P1+r2332=1B5B313B3248\P1+r2334=1B5B313B3244\P1+r2569=1B5B313B3243\P1+r2A37=1B5B313B3246\P1+r6B31=1B4F50\on3.6
+virtualenv venv --python=python3.6
 source venv/bin/activate        # Linux/macOS
 ```
 Install pip
